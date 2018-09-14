@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,10 +16,14 @@ public class Package {
 	private UUID id;
 	private String name;
 //	private String type;
-	private UUID parentId;
-	@OneToMany
+//	private UUID parentId;
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="PackageId")
 	private List<Workflow> workflows;
+	
+	public Package( ) {
+		this.id = UUID.randomUUID();
+	}
 	
 	public Package(String name, String type) {
 		this.name = name;

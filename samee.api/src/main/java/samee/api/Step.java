@@ -13,6 +13,10 @@ public class Step {
 	private UUID workflowId;
 	private int sequenceNumber;
 	
+	public Step() {
+		this.id = UUID.randomUUID();
+	}
+	
 	public Step (String name, UUID workflowId, int sequenceNumber) {
 		this.name = name;
 		this.id = UUID.randomUUID();

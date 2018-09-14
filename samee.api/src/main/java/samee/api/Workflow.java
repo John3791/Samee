@@ -13,9 +13,22 @@ public class Workflow {
 	@Id
 	private UUID id;
 	private String name;
-	@OneToMany
-	@JoinColumn(name="WorkflowId")
-	private List<Step> steps;
+	private UUID packageId;
+//	@OneToMany
+//	@JoinColumn(name="WorkflowId")
+//	private List<Step> steps;
+	
+	public UUID getPackageId() {
+		return packageId;
+	}
+
+	public void setPackageId(UUID packageId) {
+		this.packageId = packageId;
+	}
+
+	public Workflow() {
+		this.id = UUID.randomUUID();
+	}
 	
 	public Workflow (String name) {
 		this.name = name;
