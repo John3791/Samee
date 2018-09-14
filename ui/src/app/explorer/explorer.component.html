@@ -1,0 +1,14 @@
+<ngb-tabset>
+  <ngb-tab title="Package">
+    <ng-template ngbTabContent>
+      <tree-root [nodes]="packages"></tree-root>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>Profile</ng-template>
+    <ng-template ngbTabContent>Explorer tree containing profiles.</ng-template>
+  </ngb-tab>
+  <ngb-tab title="Disabled" [disabled]="true">
+    <ng-template ngbTabContent>Sample disabled tab, for development purposes only.</ng-template>
+  </ngb-tab>
+</ngb-tabset>
