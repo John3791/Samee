@@ -1,0 +1,6 @@
+<h1>Package: {{package.name}}</h1>
+<h2>Id: {{packageId}}</h2>
+<h2>Workflows:</h2>
+<ul *ngFor='let workflow of package.workflows'>
+    <li>{{workflow.name}}</li>
+</ul>

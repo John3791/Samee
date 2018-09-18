@@ -10,6 +10,7 @@ import { ExplorerComponent } from './explorer/explorer.component';
 import { ExploreComponent } from './explore/explore.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
+import { PackageDetailViewComponent } from './package-detail-view/package-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TabComponent } from './tab/tab.component';
     ExplorerComponent,
     ExploreComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    PackageDetailViewComponent
     ],
   imports: [
     AngularSplitModule,

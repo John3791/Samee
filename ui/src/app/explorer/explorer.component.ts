@@ -21,7 +21,6 @@ export class ExplorerComponent implements OnInit {
   getPackages() {
     this.packages = [];
     this.rest.getPackages().subscribe((data: {}) => {
-      console.log(data);
       this.packages = data;
     });
   }
