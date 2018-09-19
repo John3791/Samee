@@ -11,6 +11,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tab/tab.component';
 import { PackageDetailViewComponent } from './package-detail-view/package-detail-view.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PackageDetailViewComponent } from './package-detail-view/package-detail
     NgbModule,
     HttpClientModule,
     TreeModule.forRoot(),
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

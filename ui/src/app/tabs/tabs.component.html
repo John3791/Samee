@@ -3,4 +3,4 @@
     <a href="#">{{ tab.tabTitle }}</a>
   </li>
 </ul>
-<ng-content></ng-content>
+<div *ngIf="!tabs"><ng-content></ng-content></div>

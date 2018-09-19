@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Package } from "../package";
+import { Package } from '../package';
 
 import { RestService } from '../rest.service';
 
@@ -17,13 +17,11 @@ export class PackageDetailViewComponent implements OnInit {
   constructor(public rest: RestService) { }
 
   ngOnInit() {
-    console.log("PackageId: " + this.packageId)
     this.getPackage(this.packageId);
   }
 
   getPackage(packageId: String) {
-    console.log(this.rest.getPackageById(packageId).subscribe(data => this.package = data));
-    console.log("Package: " + this.package.name);
+    this.rest.getPackageById(packageId).subscribe(data => this.package = data);
   }
 
 }

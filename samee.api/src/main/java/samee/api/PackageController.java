@@ -27,22 +27,7 @@ public class PackageController {
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, produces = "application/json")
 	public List<Package> findAll() {
-/*		List<Package> packages = new ArrayList<Package>();
-		List<Workflow> workflows = new ArrayList<Workflow>();
-		
-		workflows.add(new Workflow("Inbound"));
-		workflows.add(new Workflow("Outbound"));
-		packages.add(new Package("IA1000XX - Business Process", "Business Process", workflows));
-		packages.add(new Package("IA2000XX - Business Process", "Business Process"));
-		workflows = new ArrayList<Workflow>();
-		workflows.add(new Workflow("Badge Photo Sync"));
-		workflows.add(new Workflow("Spark Photo Sync"));
-		workflows.add(new Workflow("HCM Data Sync"));
-		packages.add(new Package("Staff Data Services", "General", workflows));
-		packages.add(new Package("WSS Scheduled Processes", "General"));
-		packages.add(new Package("AIS Administrative Utilities", "General"));
-*/
-		logger.info("findAll()");
+		logger.trace("findAll()");
 		return (List<Package>) packageRepository.findAll();
 		
 	}
@@ -50,7 +35,7 @@ public class PackageController {
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, produces="application/json", value="/{id}")
 	public Optional<Package> getPackageById(@PathVariable String id) {
-		logger.info("findById(" + id + ")");
+		logger.trace("findById(" + id + ")");
 		return packageRepository.findById(UUID.fromString(id));
 	}
 

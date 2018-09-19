@@ -8,18 +8,25 @@ import { Component, ContentChildren, QueryList, AfterContentInit } from '@angula
 })
 export class TabsComponent implements AfterContentInit {
 
-  @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+  tabs: TabComponent[] = [];
   constructor() { }
 
   ngAfterContentInit() {
-    let activeTabs = this.tabs.filter((tab)=>tab.active);
-    if(activeTabs.length === 0) {
-      this.selectTab(this.tabs.first);
+
+    const activeTabs = this.tabs.filter((child) => child.active);
+    if (activeTabs.length === 0) {
+     // this.selectTab(this.tabs[0]);
     }
+    const tab = new TabComponent('Test', true);
+    this.addTab(tab);
   }
 
   selectTab(tab: TabComponent) {
-    this.tabs.toArray().forEach(tab => tab.active = false);
+    this.tabs.forEach(child => child.active = false);
     tab.active = true;
+  }
+
+  addTab(tab: TabComponent) {
+    this.tabs.push(tab);
   }
 }

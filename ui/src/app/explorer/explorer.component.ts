@@ -2,6 +2,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 
 import { RestService } from '../rest.service';
+import { Package } from '../package';
 
 @Component({
   selector: 'app-explorer',
@@ -10,7 +11,7 @@ import { RestService } from '../rest.service';
 })
 export class ExplorerComponent implements OnInit {
 
-  packages: any = [];
+  packages: Package[];
 
   constructor(public rest: RestService) { }
 
@@ -19,9 +20,6 @@ export class ExplorerComponent implements OnInit {
   }
 
   getPackages() {
-    this.packages = [];
-    this.rest.getPackages().subscribe((data: {}) => {
-      this.packages = data;
-    });
+    this.rest.getPackages().subscribe(data => this.packages = data);
   }
 }

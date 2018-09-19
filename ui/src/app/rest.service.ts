@@ -6,6 +6,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 import { Package } from './package';
 
+import 'rxjs/add/operator/map';
+
+import { values } from 'lodash';
+
 const endpoint = 'http://localhost:8080/';
 const packageEndpoint = 'http://localhost:8080/package';
 const httpOptions = {
@@ -22,16 +26,12 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  private extractData(res: Response): Observable<any> {
-    let body = res;
-    return body || { };
-  }
-
   getPackages(): Observable<Package[]> {
-    return this.http.get(packageEndpoint).pipe(map(this.extractData));
+    return  this.http.get<Package[]>(packageEndpoint).map(data => values(data));
   }
 
   getPackageById(packageId: String): Observable<Package> {
     return this.http.get<Package>(packageEndpoint + '/' + packageId);
   }
+
 }
