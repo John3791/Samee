@@ -10,7 +10,7 @@ import { RestService } from '../rest.service';
 })
 export class PackageDetailViewComponent implements OnInit {
    @Input()
-   packageId: String;
+   packageId: string;
 
    package: Package;
 
@@ -20,7 +20,7 @@ export class PackageDetailViewComponent implements OnInit {
     this.getPackage(this.packageId);
   }
 
-  getPackage(packageId: String) {
+  getPackage(packageId: string) {
     this.rest.getPackageById(packageId).subscribe(data => this.package = data);
   }
 

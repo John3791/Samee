@@ -15,26 +15,34 @@ public class Package {
 	@Id
 	private UUID id;
 	private String name;
-//	private String type;
+	private String description;
+	
+	//	private String type;
 //	private UUID parentId;
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="PackageId")
 	private List<Workflow> workflows;
 	
 	public Package( ) {
-		this.id = UUID.randomUUID();
+		this(UUID.randomUUID(), "New Package");
 	}
 	
-	public Package(String name, String type) {
-		this.name = name;
-//		this.type = type;
-		this.id = UUID.randomUUID();
+	public Package(UUID id, String name) {
+		this(id, name, null, null);
 	}
-	public Package(String name, String type, List<Workflow> workflows) {
+	
+	public Package(UUID id, String name, String description) {
+		this(id, name, description, null);		
+	}
+	public Package(String name, String description, List<Workflow> workflows) {
+		this(UUID.randomUUID(), name, description, workflows);
+	}
+
+	public Package(UUID id, String name, String description, List<Workflow> workflows) {
+		this.id = id;
 		this.name = name;
-//		this.type = type;
+		this.description = description;
 		this.workflows = workflows;
-		this.id = UUID.randomUUID();
 	}
 
 	public List<Workflow> getChildren() {
@@ -61,6 +69,14 @@ public class Package {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 //	public String getType() {

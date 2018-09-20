@@ -1,7 +1,8 @@
 import { Workflow } from './workflow';
 
 export class Package {
-    id: String;
-    name: String;
+    id: string;
+    name: string;
+    description: string;
     workflows: Workflow[];
 }
