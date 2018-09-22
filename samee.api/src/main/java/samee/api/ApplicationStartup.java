@@ -1,5 +1,7 @@
 package samee.api;
 
+import java.util.Collections;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,28 @@ public class ApplicationStartup implements ApplicationRunner {
 	}
 	
 	private void afterStartup() {
-		
+		logger.info("Initial list of root packages:");
 		packageRepository.findAll().forEach(rootPackage -> {
 			logger.info("Package: {}", rootPackage.getName());
-			rootPackage.getWorkflows().forEach(workflow -> {
-				logger.info("Workflow: {}", workflow.getName());
-			});
+//			rootPackage.getWorkflows().forEach(workflow -> {
+//				logger.info("Workflow: {}", workflow.getName());
+//			});
 		});
 		
+		logger.info(" ");
+		logger.info("Package tree from root packages:");
+		packageRepository.findAll().forEach(rootPackage -> {
+			logPackage(rootPackage, 0);
+		});
+	}
+	
+	private void logPackage(Package package_, int level) {
+		String result = String.join("", Collections.nCopies(level, "*"));
+		result += package_.getName();
+		logger.info(result);
+		level++;
+		for(Package child: package_.getPackages()) {
+			logPackage(child, level);
+		}
 	}
 }

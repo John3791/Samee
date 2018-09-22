@@ -7,18 +7,69 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="Package")
 public class Package {
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
+
+	public Package getParent() {
+		return parent;
+	}
+
+	public void setParent(Package parent) {
+		this.parent = parent;
+	}
+
 	@Id
 	private UUID id;
 	private String name;
-	private String description;
+	private String shortDescription;
+	private String longDescription;
+	private UUID parentId;
+
+	public UUID getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(UUID parentId) {
+		this.parentId = parentId;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="ParentId")
+	private Package parent;
 	
-	//	private String type;
-//	private UUID parentId;
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="ParentId")
+	private List<Package> packages;
+
+	public List<Package> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
+	}
+
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="PackageId")
 	private List<Workflow> workflows;
@@ -31,17 +82,26 @@ public class Package {
 		this(id, name, null, null);
 	}
 	
-	public Package(UUID id, String name, String description) {
-		this(id, name, description, null);		
+	public Package(UUID id, String name, String shortDescription) {
+		this(id, name, shortDescription, null);		
 	}
-	public Package(String name, String description, List<Workflow> workflows) {
-		this(UUID.randomUUID(), name, description, workflows);
+	public Package(String name, String shortDescription, List<Workflow> workflows) {
+		this(UUID.randomUUID(), name, shortDescription, workflows);
 	}
 
-	public Package(UUID id, String name, String description, List<Workflow> workflows) {
+	public Package(UUID id, String name, String shortDescription, List<Workflow> workflows) {
 		this.id = id;
 		this.name = name;
-		this.description = description;
+		this.shortDescription = shortDescription;
+		this.workflows = workflows;
+	}
+
+	public Package(UUID id, String name, String shortDescription, String longDescription, Package parent, List<Workflow> workflows) {
+		this.id = id;
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.longDescription = longDescription;
+		this.parent = parent;
 		this.workflows = workflows;
 	}
 
@@ -71,19 +131,4 @@ public class Package {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-//	public String getType() {
-//		return type;
-//	}
-
-//	public void setType(String type) {
-//		this.type = type;
-//	}
 }
