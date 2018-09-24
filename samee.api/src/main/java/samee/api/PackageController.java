@@ -27,15 +27,15 @@ public class PackageController {
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, produces = "application/json")
 	public List<Package> findAll() {
-		logger.trace("findAll()");
+		logger.info("findAll()");
 		return (List<Package>) packageRepository.findAll();
 		
 	}
 	
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, produces="application/json", value="/{id}")
-	public Optional<Package> getPackageById(@PathVariable String id) {
-		logger.trace("findById(" + id + ")");
-		return packageRepository.findById(UUID.fromString(id));
+	public Package getPackageById(@PathVariable String id) {
+		logger.info("findById(" + id + ")");
+		return packageRepository.findById(UUID.fromString(id)).get();
 	}
 }

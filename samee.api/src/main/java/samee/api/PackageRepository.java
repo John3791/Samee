@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PackageRepository extends SameeRepository<Package, UUID> {
 	
-	   @Query("SELECT p FROM Package p WHERE p.parentId IS NULL")
+	   @Query("SELECT p FROM Package p WHERE p.parentId IS NULL ORDER BY p.name ASC")
 	    List<Package> findAll();
 
 

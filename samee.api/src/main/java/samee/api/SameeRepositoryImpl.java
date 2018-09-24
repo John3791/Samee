@@ -29,10 +29,10 @@ public class SameeRepositoryImpl <T, ID extends Serializable>
 		super(entityInformation, entityManager);
 	}
 	
-	@Transactional
+/*	@Transactional
 	@Override
 	public Optional<T> findById(String id) {
 		return super.findById((ID) UUID.fromString(id));
 	}
-
+*/
 }

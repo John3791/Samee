@@ -11,5 +11,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface SameeRepository <T, ID extends Serializable > extends JpaRepository<T, ID> {
 
-	Optional<T> findById(String id);
+	// Optional<T> findById(String id);
 }

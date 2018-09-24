@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -56,10 +60,13 @@ public class Package {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ParentId")
+	@JsonBackReference
 	private Package parent;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="ParentId")
+	@OrderBy("name ASC")
+	@JsonManagedReference
 	private List<Package> packages;
 
 	public List<Package> getPackages() {
@@ -72,6 +79,7 @@ public class Package {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="PackageId")
+	@OrderBy("name ASC")
 	private List<Workflow> workflows;
 	
 	public Package( ) {
@@ -105,8 +113,8 @@ public class Package {
 		this.workflows = workflows;
 	}
 
-	public List<Workflow> getChildren() {
-		return workflows;
+	public List<Package> getChildren() {
+		return packages;
 	}
 
 	public List<Workflow> getWorkflows() {
