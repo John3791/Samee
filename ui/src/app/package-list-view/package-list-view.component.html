@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+    <th>Name</th>
+    <th>Short Description</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of packages">
+      <td>{{p.name}}</td>
+      <td>{{p.shortDescription}}</td>
+      <td><button class="btn btn-sm btn-default" (click)="editPackage.emit(p)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-default" (click)="addPackage.emit()">Add new package.</button>
