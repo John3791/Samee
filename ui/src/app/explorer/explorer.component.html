@@ -12,3 +12,7 @@
     <ng-template ngbTabContent>Sample disabled tab, for development purposes only.</ng-template>
   </ngb-tab>
 </ngb-tabset>
+
+<mat-tab-group>
+  <mat-tab label="One" *ngFor='let node of nodes'>{{node.name}}</mat-tab>
+</mat-tab-group>

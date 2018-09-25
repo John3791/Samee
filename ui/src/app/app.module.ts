@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AngularSplitModule } from 'angular-split';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatFormFieldModule, MatInputModule, MatTabsModule } from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TreeModule } from 'angular-tree-component';
@@ -32,6 +35,10 @@ import { PackageListViewComponent } from './package-list-view/package-list-view.
     HttpClientModule,
     TreeModule.forRoot(),
     BrowserModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    MatInputModule,
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],

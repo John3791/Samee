@@ -1,25 +1,21 @@
 
-<form [formGroup]="packageForm" (ngSubmit)="onPackageFormSubmit()" class="form-horizontal">
+<form [formGroup]="packageForm" (ngSubmit)="onPackageFormSubmit()" class="container" style="margin-left:0;">
     <input type="hidden" formControlName="id">
-    <div class="form-group">
+  <!--  <div class="form-group">
         <label for="name" class="control-label">Name:</label>
         <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
     </div>
     <div class="form-group">
         <label for="shortDescription" class="control-label">Short description:</label>
         <input type="text" class="form-control" id="shortDescription" placeholder="Short description." formControlName="shortDescription">
-    </div>
-    <div class="form-group">
         <label for="longDescription" class="control-label">Long description:</label>
         <input type="text" class="form-control" id="longDescription" placeholder="Long description." formControlName="longDescription">
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-</form>
-<!--
-<h1>Package: {{package.name}}</h1>
-<h2>Id: {{packageId}}</h2>
-<h2>Workflows:</h2>
-<ul *ngFor='let workflow of package.workflows'>
-    <li>{{workflow.name}}</li>
-</ul>
 -->
+    <mat-form-field><input matInput type="text" formControlName="name" class="form-control" placeholder="Name"></mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" formControlName="shortDescription" class="form-control" placeholder="Short description">
+        <textarea matInput placeholder="Long description"></textarea>
+    </mat-form-field>
+</form>
