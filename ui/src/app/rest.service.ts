@@ -4,14 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-import { Package } from './package';
-
-import 'rxjs/add/operator/map';
-
-import { values } from 'lodash';
-
-const endpoint = 'http://localhost:8080/';
-const packageEndpoint = 'http://localhost:8080/package';
+const host = 'http://localhost:8080/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -26,12 +19,15 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  getPackages(): Observable<Package[]> {
-    return  this.http.get<Package[]>(packageEndpoint).map(data => values(data));
+  private extractData(res: Response) {
+    const body = res;
+    return body || { };
   }
 
-  getPackageById(packageId: String): Observable<Package> {
-    return this.http.get<Package>(packageEndpoint + '/' + packageId);
+  getPackages(): Observable<any> {
+    return this.http.get(host + 'package').pipe(map(this.extractData));
   }
-
+  getPackageById(packageId: String) {
+    return this.http.get(host + 'package/' + packageId);
+  }
 }

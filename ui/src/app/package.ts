@@ -5,5 +5,6 @@ export class Package {
     name: string;
     shortDescription: string;
     longDescription: string;
+    parentId: string;
     workflows: Workflow[];
 }
